@@ -1,15 +1,14 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
+var description = document.querySelector('.description');
 //Current Date
 var currentDay = dayjs();
 $('#currentDay').text(currentDay.format('[Today is] dddd MMMM D YYYY'));
 
 let currentHour = parseInt(dayjs().format('HH'));
-//I had learned that parseINT returns an integer. using this in my code i can compare numerically the time in 24hr format to the time block with numerical id's that have a split so side by side integer comparison can be done
+//I had learned that parseINT returns an integer. using this in my code i can compare numerically the time in 24hr format to the time block with the numerical id's that have a split so side by side integer comparison can be done
 $(function () {
-  // TODO: Add a listener for click events on the save button. 
   // Each div has a saveBtn and this code calls those buttons
   $('.saveBtn').on("click", function(event){
     event.preventDefault();
@@ -18,17 +17,6 @@ $(function () {
     var time = $(this).parent().attr("id"); // (this) refers to the button,`.parent` will call the parent div while the attr('id') will call to the id of the div
     localStorage.setItem(time, input); // furthermore we can now associate the input itself with the div's id. 
   });
-  
-
-  // This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-
-
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
