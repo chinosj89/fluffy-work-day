@@ -12,10 +12,13 @@ $(function () {
   // Each div has a saveBtn and this code calls those buttons
   $('.saveBtn').on("click", function(event){
     event.preventDefault();
-    console.log('clicked!')
+    window.alert('Saved in Local Storage!');
     var input = $(this).siblings(".description").val(); // this selects the input field
     var time = $(this).parent().attr("id"); // (this) refers to the button,`.parent` will call the parent div while the attr('id') will call to the id of the div
     localStorage.setItem(time, input); // furthermore we can now associate the input itself with the div's id. 
+    //Append a text here that saved text is in local storage
+    
+  
   });
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -51,5 +54,4 @@ $('.time-block').each(function(){
   $("#hour-17 .description").val(localStorage.getItem("5PM"));
   
 
-  // TODO: Add code to display the current date in the header of the page.
 });
