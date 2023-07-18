@@ -1,6 +1,6 @@
 # Work Day Scheduler: Week 5 Challenge
 
-## URL: 
+## URL: https://chinosj89.github.io/fluffy-work-day/
 
 ## Description: 
 As a student, we are to create a simple calendar application that allows a user to save events for each hour of a typical working day (9am–5pm). <br />
