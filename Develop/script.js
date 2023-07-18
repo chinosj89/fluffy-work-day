@@ -8,41 +8,43 @@ $('#currentDay').text(currentDay.format('[Today is] dddd MMMM D YYYY'));
 
 let currentHour = parseInt(dayjs().format('HH'));
 //I had learned that parseINT returns an integer. using this in my code i can compare numerically the time in 24hr format to the time block with the numerical id's that have a split so side by side integer comparison can be done
+
 $(function () {
   // Each div has a saveBtn and this code calls those buttons
   $('.saveBtn').on("click", function(event){
     event.preventDefault();
-    window.alert('Saved in Local Storage!');
-    var input = $(this).siblings(".description").val(); // this selects the input field
+    //window.alert('Saved in Local Storage!');
+    $(".notification").removeClass("d-none");
+    // this selects the input field
+    var input = $(this).siblings(".description").val(); 
+    // var input = $(".time-block").children(".description").val(); - can also be done this way
     var time = $(this).parent().attr("id"); // (this) refers to the button,`.parent` will call the parent div while the attr('id') will call to the id of the div
     localStorage.setItem(time, input); // furthermore we can now associate the input itself with the div's id. 
     //Append a text here that saved text is in local storage
     
+    // Mock up had a notification when saved button is clicked and i wanted to copy that. I created an h2 with a display: none; then when the button is clicked it will remove the class. I then learned how to set a timeout where a class is added in a second which is display:none. This shows the h2 and after a second it add display none.
+    setTimeout(function(){
+      $(".notification").addClass("d-none")
+    },1000);
   
   });
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-console.log(currentHour);
+// Uses the time block class div and parses the div id into an integer while splitting the '-' away, while the [1] is accesing the 9.
+console.log("current time in HH: " + currentHour);
 $('.time-block').each(function(){
   var timeBlock = parseInt($(this).attr("id").split("-")[1]);
+  console.log("timeBlocks: " + timeBlock);
   if (timeBlock === currentHour ) {
     $(this).addClass('present');
-  } else if (timeBlock < currentHour) {
-    $(this).addClass('future');
   } else if (timeBlock > currentHour) {
+    $(this).addClass('future');
+  } else if (timeBlock < currentHour) {
     $(this).addClass('past');
   }
 })
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-
+ 
+// local storage
   $("#hour-9 .description").val(localStorage.getItem("9AM"));
   $("#hour-10 .description").val(localStorage.getItem("10AM"));
   $("#hour-11 .description").val(localStorage.getItem("11AM"));
